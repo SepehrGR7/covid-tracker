@@ -5,7 +5,7 @@ const FooterLink = ({ url, children }) => {
         href={`https://${url}/sepehrgr7`}
         target="_blank"
         rel="noreferrer"
-        className="ml-4 transition-colors duration-300 hover:text-purple-500"
+        className="mx-4 transition-colors duration-300 hover:text-purple-500"
       >
         {children}
       </a>
