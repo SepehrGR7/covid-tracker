@@ -13,7 +13,7 @@ const Header = () => {
           <div className="hidden lg:block"></div>
           <div className="flex items-center lg:flex-col">
             <h1 className="text-xl font-semibold md:text-3xl lg:mb-2">
-              <i className="mr-1 fas fa-virus fa-lg"></i> Covid-19 Tracker
+              <i className="mr-1 fas fa-virus fa-lg"></i> COVID-19 Tracker
             </h1>
             <p className="hidden text-sm font-light lg:block lg:text-base">
               API by{' '}

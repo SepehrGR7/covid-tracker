@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 
+// A hook to toggle the dark mode
 const useDarkMode = () => {
   const [theme, setTheme] = useState(
-    JSON.parse(localStorage.getItem('theme')) || 'light'
+    JSON.parse(localStorage.getItem('theme'))
+      ? JSON.parse(localStorage.getItem('theme'))
+      : 'light'
   )
   const colorTheme = theme === 'light' ? 'dark' : 'light'
 
