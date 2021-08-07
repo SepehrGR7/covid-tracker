@@ -2,7 +2,7 @@ import FooterLink from './FooterLink'
 
 const Footer = () => {
   return (
-    <div className="bottom-0 p-4 pb-2 text-center text-black text-opacity-50 md:fixed md:left-0 md:right-0 dark:text-white dark:bg-gray-900">
+    <div className="bottom-0 p-4 pb-2 text-center md:fixed md:left-0 md:right-0">
       <div className="container flex flex-col items-center justify-between mx-auto md:flex-row">
         <p className="mb-2 font-light text-md md:m-0">
           Coded by{' '}

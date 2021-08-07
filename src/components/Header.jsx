@@ -1,8 +1,4 @@
-import useDarkMode from '../hooks/useDarkMode'
-
-const Header = () => {
-  const [colorTheme, setTheme] = useDarkMode()
-
+const Header = ({ onThemeToggle, theme }) => {
   return (
     <header>
       <div
@@ -30,10 +26,10 @@ const Header = () => {
           <div className="flex items-center justify-end col-span-1 ">
             <button
               className="flex items-center justify-center w-10 h-10 p-2 transition-colors duration-300 rounded-full md:w-14 md:h-14 hover:bg-purple-700"
-              onClick={() => setTheme(colorTheme)}
+              onClick={onThemeToggle}
             >
               <ion-icon
-                name={colorTheme === 'light' ? 'sunny' : 'moon'}
+                name={theme.id === 'dark' ? 'sunny' : 'moon'}
                 size="large"
               ></ion-icon>
             </button>

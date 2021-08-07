@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import styled, { ThemeProvider } from 'styled-components'
 import axios from 'axios'
 import Header from './components/Header'
 import Footer from './components/Footer'
@@ -7,7 +8,27 @@ import Cards from './components/Cards'
 import DataTitle from './components/DataTitle'
 import CountrySelect from './components/CountrySelect'
 
+const themeLight = {
+  id: 'light',
+  background: '#fff',
+  color: '#000'
+}
+
+const themeDark = {
+  id: 'dark',
+  background: '#111827',
+  color: '#fff'
+}
+
+const StyledWrapper = styled.div`
+  min-height: 100vh;
+  background-color: ${p => p.theme.background};
+  color: ${p => p.theme.color};
+  transition: background-color 0.35s, color 0.35s;
+`
+
 function App() {
+  const [theme, setTheme] = useState(themeDark)
   const [stats, setStats] = useState({})
   const [countries, setCountries] = useState(false)
   const [title, setTitle] = useState('Global')
@@ -15,7 +36,7 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const setData = async () => {
+    const setInitialData = async () => {
       const data = await fetchCovidData()
 
       setStats(data.Global)
@@ -24,8 +45,7 @@ function App() {
       setTimeout(() => setLoading(false), 1000)
     }
 
-    setData()
-    // eslint-disable-next-line
+    setInitialData()
   }, [])
 
   const fetchCovidData = async () => {
@@ -39,7 +59,7 @@ function App() {
     setStats(country)
   }
 
-  const clearCountry = async () => {
+  const onClearCountry = async () => {
     setLoading(true)
     const data = await fetchCovidData()
     setStats(data.Global)
@@ -47,26 +67,32 @@ function App() {
     setLoading(false)
   }
 
+  const onThemeToggle = () => {
+    setTheme(theme.id === 'light' ? themeDark : themeLight)
+  }
+
   return (
-    <div className="min-h-screen dark:bg-gray-900">
-      {loading ? (
-        <Loader />
-      ) : (
-        <>
-          <Header />
-          <main className="mt-10 mb-5 md:mb-14">
-            <DataTitle title={title} dataDate={dataDate} />
-            <Cards data={stats} />
-            <CountrySelect
-              countries={countries}
-              onCountryChange={onCountryChange}
-              onClearCountry={clearCountry}
-            />
-          </main>
-          <Footer />
-        </>
-      )}
-    </div>
+    <ThemeProvider theme={theme}>
+      <StyledWrapper>
+        {loading ? (
+          <Loader />
+        ) : (
+          <>
+            <Header onThemeToggle={onThemeToggle} theme={theme} />
+            <main className="mt-10 mb-5 md:mb-14">
+              <DataTitle theme={theme} title={title} dataDate={dataDate} />
+              <Cards data={stats} />
+              <CountrySelect
+                countries={countries}
+                onCountryChange={onCountryChange}
+                onClearCountry={onClearCountry}
+              />
+            </main>
+            <Footer />
+          </>
+        )}
+      </StyledWrapper>
+    </ThemeProvider>
   )
 }
 
