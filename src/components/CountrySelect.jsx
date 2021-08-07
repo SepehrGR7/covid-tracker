@@ -39,7 +39,6 @@ const CountrySelect = ({ countries, onCountryChange, onClearCountry }) => {
           </option>
         ))}
       </select>
-      <StyledButton>Hi, My Name Is What</StyledButton>
       {selectedCountry && (
         <button
           onClick={onClearCountry}
