@@ -1,12 +1,4 @@
 import { useState } from 'react'
-import styled from 'styled-components'
-
-const StyledButton = styled.button`
-  background-color: '#8739f9';
-  color: '#000';
-  border-radius: 10rem;
-  padding: 0.5rem;
-`
 
 const CountrySelect = ({ countries, onCountryChange, onClearCountry }) => {
   const [selectedCountry, setSelectedCountry] = useState('')
